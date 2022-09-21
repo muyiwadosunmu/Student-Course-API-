@@ -2,7 +2,14 @@ from fastapi import FastAPI, Path, Query
 from pydantic import BaseModel
 from typing import Optional, List
 
-app = FastAPI()
+app = FastAPI(
+    title="Fast API CRUD Project",
+    description="API for managing students and courses",
+    contact = {
+        "name": "Oluwamuyiwa",
+        "email": "oluwadosunmu@gmail.com"
+    }
+)
 
 users = []
 
