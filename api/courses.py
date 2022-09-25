@@ -1,4 +1,3 @@
-from symbol import async_funcdef
 import fastapi
 
 router = fastapi.APIRouter()
@@ -21,4 +20,8 @@ async def update_course():
 
 @router.delete("/courses/{id}")
 async def delete_course():
+    return {"courses":[]}
+
+@router.get("/courses/{id/sections}")
+async def read_course_sections():
     return {"courses":[]}

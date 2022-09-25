@@ -22,7 +22,7 @@ async def get_user():
 @router.post("/user")
 async def create_user(user: User):
     users.append(user)
-    return users
+    return users 
 
 
 @router.get("/users/{id}")
