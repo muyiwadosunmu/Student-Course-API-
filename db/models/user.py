@@ -34,3 +34,4 @@ class Profile(Timestamp, Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
     owner = relationship("User", back_populates="profile")
+    
