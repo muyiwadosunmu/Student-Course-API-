@@ -1,21 +1,19 @@
 [tool.poetry]
-name = "Student-Course API"
+name = "Learning Management System"
 version = "0.1.0"
-description = "A Student-Inventory API"
+description = "Student and Course management system"
 authors = ["Oluwamuyiwa Dosunmu"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-uvicorn = "^0.18.3"
 fastapi = "^0.85.0"
-pydantic = "^1.10.2"
+uvicorn = "^0.18.3"
+alembic = "^1.8.1"
 SQLAlchemy = "^1.4.41"
 psycopg2-binary = "^2.9.3"
 SQLAlchemy-Utils = "^0.38.3"
-alembic = "^1.8.1"
 
 [tool.poetry.dev-dependencies]
-black = {version = "^22.8.0", allow-prereleases = true}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -1,17 +1,41 @@
-from fastapi import FastAPI
-from api import users, courses, sections
-from db.db_setup import engine, SessionLocal, get_db
-from db.models import user, course
-
-user.Base.metadata.create_all(bind=engine)
-course.Base.metadata.create_all(bind=engine)
+from typing import Optional, List
+from fastapi import FastAPI, Path, Query
+from pydantic import BaseModel
 
 app = FastAPI(
-    title="Fast API CRUD Project",
-    description="API for managing students and courses",
-    contact={"name": "Oluwamuyiwa", "email": "oluwadosunmu@gmail.com"},
+    title="Fast API LMS",
+    description="LMS for managing students and courses.",
+    version="0.0.1",
+    contact={
+        "name": "Muyiwa",
+        "email": "oluwamuyiwadosunmu@gmail.com",
+    },
+    license_info={
+        "name": "MIT",
+    },
 )
 
-app.include_router(users.router)
-app.include_router(sections.router)
-app.include_router(courses.router)
+
+class User(BaseModel):
+    email: str
+    is_active: bool
+    bio: Optional[str]
+
+
+@app.get("/users", response_model=List[User])
+async def get_users():
+    return users
+
+
+@app.post("/users")
+async def create_user(user: User):
+    users.append(user)
+    return "Success"
+
+
+@app.get("/users/{id}")
+async def get_user(
+    id: int = Path(..., description="The ID of the user you want to retrieve.", gt=2),
+    q: str = Query(None, max_length=5)
+):
+    return { "user": users[id], "query": q }

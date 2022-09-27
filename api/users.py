@@ -11,20 +11,19 @@ class User(BaseModel):
     email: str
     is_active: bool
     bio: Optional[str]
-    age: int
 
 
-@router.get("/", response_model=List[User])
-async def get_user():
+@router.get("/users", response_model=List[User])
+async def get_users():
     return users
 
 
-@router.post("/user")
+@router.post("/users")
 async def create_user(user: User):
     users.append(user)
-    return users 
+    return "Success"
 
 
 @router.get("/users/{id}")
 async def get_user(id: int):
-    return {"users": users[id]}
+    return { "user": users[id] }
