@@ -1,16 +1,7 @@
 from typing import Optional, List
 import fastapi
-from pydantic import BaseModel
-
+from api.utils.users import get_user,get_user_by_email, get_users
 router = fastapi.APIRouter()
-
-users = []
-
-
-class User(BaseModel):
-    email: str
-    is_active: bool
-    bio: Optional[str]
 
 
 @router.get("/users", response_model=List[User])
