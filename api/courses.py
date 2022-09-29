@@ -1,11 +1,17 @@
 import fastapi
+from fastapi import Depends, HTTPException
+from sqlalchemy.orm import Session
+from db.db_setup import get_db
+from pydantic_schemas.course import Course, CourseCreate
+from api.utils.courses import get_course, get_courses, create_course
 
 router = fastapi.APIRouter()
 
 
 @router.get("/courses")
-async def read_courses():
-    return {"courses": []}
+async def read_courses(db: Session = Depends(get_db)):
+    courses = get_courses(db=db)
+    return courses
 
 
 @router.post("/courses")
