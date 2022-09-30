@@ -11,6 +11,9 @@ def get_course(db: Session, course_id: int):
 def get_courses(db: Session):
     return db.query(Course).all()
 
+def get_user_courses(db: Session, user_id:int):
+    courses = db.query(Course).filter(Course.user_id==user_id).all()
+    return courses
 
 def create_course(db: Session, course: CourseCreate):
     db_course = Course(
